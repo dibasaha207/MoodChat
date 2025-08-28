@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MoodChat - Mood-Based AI Chat Application
 
 A React web application that provides personalized chat experiences based on the user's current mood. The application integrates with n8n webhooks to deliver context-aware responses.
@@ -143,3 +144,6 @@ For support or questions, please open an issue in the repository or contact the 
 - Integration with additional messaging platforms
 - Voice chat capabilities
 - Mood-based recommendation system
+=======
+# MoodChat
+>>>>>>> 98d9365200e55484c1e4755643a03d8aa937d427

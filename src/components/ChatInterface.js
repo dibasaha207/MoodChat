@@ -47,7 +47,7 @@ const ChatInterface = ({ mood, onReset }) => {
 
     const userMessage = {
       id: Date.now(),
-      text: inputMessage,
+      text: String(inputMessage.trim()),
       sender: 'user',
       timestamp: new Date().toLocaleTimeString()
     };
@@ -86,7 +86,10 @@ const ChatInterface = ({ mood, onReset }) => {
         // Handle different possible response formats
         let responseText = "I'm processing your message. Please wait a moment...";
         
-        if (data && data.response) {
+        if (data && data.output) {
+          // Handle n8n webhook response format
+          responseText = data.output;
+        } else if (data && data.response) {
           responseText = data.response;
         } else if (data && data.message) {
           responseText = data.message;
@@ -103,7 +106,7 @@ const ChatInterface = ({ mood, onReset }) => {
         
         const aiMessage = {
           id: Date.now() + 1,
-          text: responseText,
+          text: String(responseText),
           sender: 'ai',
           timestamp: new Date().toLocaleTimeString()
         };
@@ -115,7 +118,7 @@ const ChatInterface = ({ mood, onReset }) => {
       console.error('Error sending message:', error);
       const errorMessage = {
         id: Date.now() + 1,
-        text: `I'm sorry, I'm having trouble connecting right now. Error: ${error.message}. Please try again in a moment.`,
+        text: String(`I'm sorry, I'm having trouble connecting right now. Error: ${error.message}. Please try again in a moment.`),
         sender: 'ai',
         timestamp: new Date().toLocaleTimeString()
       };
